@@ -1,191 +1,90 @@
 # 4-Bit Synchronous Up/Down Counter using Verilog HDL
 
-**Verilog HDL | Digital Design | FPGA | RTL Design | Xilinx Vivado**
+This project was developed as part of the Digital System Design course. The objective was to design and implement a 4-bit synchronous Up/Down Counter using Verilog HDL and verify its functionality using simulation in Xilinx Vivado.
 
----
+## Project Description
 
-## Overview
-
-This project implements a 4-bit Synchronous Binary Up/Down Counter based on the functionality of the SN74LS669 IC using Verilog HDL. The design supports synchronous counting in both directions, synchronous parallel loading of data, count enable control, and Ripple Carry Output (RCO) generation. The design was simulated, synthesized, and implemented using Xilinx Vivado and targeted for the Spartan-7 FPGA development board.
-
----
+The counter can count in both upward and downward directions depending on the control signal. It also supports parallel loading of data and generates a Ripple Carry Output (RCO) signal. The design was written in Verilog HDL, simulated using a testbench, and synthesized in Vivado.
 
 ## Features
 
-- Synchronous Up Counting (0 → 15)
-- Synchronous Down Counting (15 → 0)
-- Parallel Data Loading
-- Count Enable Control (ENP and ENT)
+- 4-bit synchronous counter
+- Up counting and Down counting modes
+- Parallel data loading
+- Enable control using ENP and ENT signals
 - Ripple Carry Output (RCO)
-- FPGA Compatible Design
-- RTL Design and Verification using Verilog HDL
+- RTL design and simulation in Vivado
 
----
-
-## Design Specifications
-
-| Parameter | Description |
-|------------|------------|
-| Counter Width | 4-bit |
-| Counting Modes | Up / Down |
-| Load Operation | Synchronous Parallel Load |
-| Enable Signals | ENP, ENT |
-| Ripple Carry Output | Active Low |
-| HDL Language | Verilog HDL |
-| Development Tool | Xilinx Vivado |
-| FPGA Board | Spartan-7 |
-
----
-
-## Inputs and Outputs
-
-### Inputs
+## Inputs
 
 | Signal | Description |
 |----------|-------------|
-| clk | Clock Input |
-| load | Active-Low Synchronous Load |
-| en_p | Active-Low Count Enable |
-| en_t | Active-Low Terminal Enable |
-| up_down | Count Direction Control |
-| data_in[3:0] | Parallel Data Input |
+| clk | Clock input |
+| load | Parallel load control |
+| en_p | Count enable input |
+| en_t | Terminal count enable |
+| up_down | Selects counting direction |
+| data_in[3:0] | Parallel data input |
 
-### Outputs
+## Outputs
 
 | Signal | Description |
 |----------|-------------|
-| count_out[3:0] | Counter Output |
-| rco_bar | Active-Low Ripple Carry Output |
-
----
+| count_out[3:0] | Counter output |
+| rco_bar | Ripple carry output |
 
 ## Project Structure
 
 ```text
-4-bit-Up-Down-Counter-Verilog
-│
-├── README.md
-│
-├── RTL
-│   └── four_bit_counter.v
-│
-├── Testbench
-│   └── testbench.v
-│
-├── Constraints
-│   └── counter.xdc
-│
-├── Results
-│   ├── RTL_Schematic
-│   │   └── rtl_schematic.png
-│   │
-│   └── Waveforms
-│       └── up_down_counter_waveform.png
-│
-└── Documentation
-    └── DSD_Report.pdf
+RTL/
+ └── four_bit_counter.v
+
+Testbench/
+ └── testbench.v
+
+Constraints/
+ └── counter.xdc
+
+Results/
+ ├── RTL_Schematic/
+ └── Waveforms/
+
+Documentation/
+ └── DSD_Report.pdf
 ```
-
----
-
-## RTL Design
-
-The RTL architecture consists of:
-
-- Clock Divider Circuit
-- 4-bit Register
-- Increment Logic
-- Decrement Logic
-- Multiplexer-based Direction Selection
-- Ripple Carry Output Logic
-- Enable and Load Control Logic
-
-RTL schematic generated using Xilinx Vivado is included in the repository.
-
----
-
-## Verification Methodology
-
-A dedicated Verilog testbench was developed to verify:
-
-- Synchronous Parallel Load
-- Up Counting Operation
-- Down Counting Operation
-- Enable Control Functionality
-- Ripple Carry Output Generation
-
-The design was verified using behavioural simulation in Xilinx Vivado.
-
----
 
 ## Simulation Results
 
-The simulation waveform confirms:
+The design was verified using a Verilog testbench. Simulation waveforms show correct operation of:
 
-- Correct incrementing sequence during Up Count mode
-- Correct decrementing sequence during Down Count mode
-- Successful synchronous loading of input data
-- Proper assertion of Ripple Carry Output at terminal counts
-- Stable operation without glitches
+- Up counting
+- Down counting
+- Parallel loading
+- Enable control functionality
 
-Simulation waveform screenshots are available in the `Results/Waveforms` directory.
+Waveform screenshots are available in the Results/Waveforms folder.
 
----
+## RTL Schematic
 
-## FPGA Implementation
-
-The design was synthesized and implemented on the Spartan-7 FPGA board using Xilinx Vivado.
-
-### Hardware Configuration
-
-| Parameter | Value |
-|------------|--------|
-| FPGA Device | XC7S50-CSGA324 |
-| Board | Spartan-7 |
-| Clock Frequency | 100 MHz |
-| Slow Clock | Generated using 26-bit Clock Divider |
-| I/O Standard | LVCMOS33 |
-
----
+The RTL schematic generated in Xilinx Vivado is included in the Results/RTL_Schematic folder.
 
 ## Tools Used
 
 - Verilog HDL
 - Xilinx Vivado
 - Spartan-7 FPGA Board
-- Git
 - GitHub
 
----
+## Learning Outcomes
 
-## Applications
+Through this project, I learned:
 
-- Digital Counters
-- FPGA-Based Systems
-- Frequency Division Circuits
-- Embedded Systems
-- Digital Timing Applications
-- Sequential Logic Design Learning
-
----
-
-## Documentation
-
-Detailed project documentation, implementation details, simulation analysis, truth tables, and FPGA configuration are available in:
-
-📄 `Documentation/DSD_Report.pdf`
-
----
-
-## Results Preview
-
-### RTL Schematic
-RTL schematic generated after elaboration in Xilinx Vivado.
-
-### Simulation Waveform
-Behavioural simulation showing correct Up Count, Down Count, Load, and Ripple Carry Output functionality.
-
----
+- Writing Verilog HDL modules
+- Designing sequential circuits
+- Creating testbenches for verification
+- Analyzing simulation waveforms
+- FPGA design flow using Vivado
+- Working with GitHub for project documentation
 
 ## Author
 
@@ -193,11 +92,3 @@ Behavioural simulation showing correct Up Count, Down Count, Load, and Ripple Ca
 
 B.Tech Electronics and Computer Engineering  
 Thapar Institute of Engineering and Technology
-
-GitHub: https://github.com/saharantanvi12
-
----
-
-## License
-
-This project is intended for educational and academic purposes.
