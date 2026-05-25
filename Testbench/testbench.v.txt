@@ -1,0 +1,46 @@
+module testbench;
+    reg clk;
+    reg load;
+    reg en_p;
+    reg en_t;
+    reg [3:0] data_in;
+    wire [3:0] count_out;
+    wire rco_bar;
+    reg up_down;
+    );
+    // Connect my counter
+    four_bit_counter uut (
+        .clk(clk), .load(load), .en_p(en_p), 
+        .en_t(en_t), .up_down(up_down), .data_in(data_in), 
+        .count_out(count_out), .rco_bar(rco_bar)
+    );
+
+    // Clock signal (10ns period)
+    always #5 clk = ~clk;
+
+    initial begin
+        // Starting values
+        clk = 0;
+        load = 1;
+        en_p = 0;
+        en_t = 0;
+        up_down = 1;
+        data_in = 4'b0000;
+
+        $display("Starting the simulation...");
+
+        // Step 1: Load the number 5
+        #10 data_in = 4'b0101; load = 0;
+        #10 load = 1;
+
+        // Step 2: Count up for a few cycles
+        #40; 
+        
+        // Step 3: Switch to counting down
+        up_down = 0;
+        #60;
+
+        $display("Ending simulation.");
+        $finish;
+    end
+endmodule
